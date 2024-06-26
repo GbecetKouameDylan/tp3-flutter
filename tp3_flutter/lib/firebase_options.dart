@@ -83,4 +83,5 @@ class DefaultFirebaseOptions {
     authDomain: 'tp3-flutter-b02d7.firebaseapp.com',
     storageBucket: 'tp3-flutter-b02d7.appspot.com',
   );
+
 }
