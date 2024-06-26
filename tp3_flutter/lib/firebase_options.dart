@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1040034403665',
     projectId: 'tp3-flutter-b02d7',
     storageBucket: 'tp3-flutter-b02d7.appspot.com',
+    iosClientId: '1040034403665-ilkg6vlcrd9qr9jk70ogoilslsjgn19v.apps.googleusercontent.com',
     iosBundleId: 'com.example.tp3Flutter',
   );
 
@@ -72,6 +73,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1040034403665',
     projectId: 'tp3-flutter-b02d7',
     storageBucket: 'tp3-flutter-b02d7.appspot.com',
+    iosClientId: '1040034403665-ilkg6vlcrd9qr9jk70ogoilslsjgn19v.apps.googleusercontent.com',
     iosBundleId: 'com.example.tp3Flutter',
   );
 
