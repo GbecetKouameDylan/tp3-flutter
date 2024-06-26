@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1040034403665",
+    "project_id": "tp3-flutter-b02d7",
+    "storage_bucket": "tp3-flutter-b02d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040034403665:android:8095d76cc0f451e271ef70",
+        "android_client_info": {
+          "package_name": "Gbecet.Dylan.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS7rY0hfc1CNaqZogiYn_zdBi8VEjzbbY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
