@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:tp3_flutter/tiroir.dart';
 
 import 'firebase_options.dart';
 
@@ -103,6 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         title: Text(widget.title),
       ),
+      drawer: Tiroir(),
       body: Center(
 
         child: Column(
@@ -111,17 +113,9 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             ElevatedButton(
               onPressed: () async {
-                await GoogleSignIn().signOut();
-                await FirebaseAuth.instance.signOut();
-                setState(() {});
-              },
-              child: Text("signout"),
-            ),
-            ElevatedButton(
-              onPressed: () async {
                signInWithGoogle();
               },
-              child: Text("signin"),
+              child: Text("Connexion avec Google"),
             ),
 
           ],
@@ -131,3 +125,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
