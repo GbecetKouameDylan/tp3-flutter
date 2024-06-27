@@ -30,7 +30,6 @@ class _TiroirState extends State<Tiroir> {
             ),
           ),
 
-
           ListTile(
             leading: Icon(Icons.settings),
             title: Text("signOut"),
