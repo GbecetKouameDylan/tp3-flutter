@@ -7,6 +7,7 @@ import 'package:tp3_flutter/creation.dart';
 import 'package:tp3_flutter/drawer.dart';
 
 import 'firebase_options.dart';
+import 'home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -77,6 +78,10 @@ class _MyHomePageState extends State<MyHomePage> {
         print('User is currently signed out!');
       } else {
         print('User is signed in! ' + user.email!);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Home()),
+        );
       }
     }
     );
@@ -92,7 +97,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
         title: Text(widget.title),
       ),
-      drawer: drawer(),
       body: Center(
 
         child: Column(
@@ -102,6 +106,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () async {
                signInWithGoogle();
+               Navigator.push(
+                 context,
+                 MaterialPageRoute(builder: (context) => Home()),
+               );
               },
               child: Text("signin with Google"),
             ),

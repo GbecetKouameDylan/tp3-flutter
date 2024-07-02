@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => Detail(
-                      taskId: taskItems[index].id,
+                      task: taskItems[index].data(),
                     ),
                   ),
                 );
