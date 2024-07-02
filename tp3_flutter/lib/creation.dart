@@ -39,18 +39,56 @@ class _TacheState extends State<Tache> {
   final _nameController = TextEditingController();
   DateTime? _selectedDate;
 
+  Future<void> addTask(String name, DateTime date) async {
+    String trimmedName = name.trim();
 
+    if (trimmedName.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Task name cannot be empty.'),
+        ),
+      );
+      return;
+    }
 
+    if (date.isBefore(DateTime.now())) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Task date must be in the future.'),
+        ),
+      );
+      return;
+    }
 
+    bool isUnique = await checkTaskNameUniqueness(trimmedName);
+    if (isUnique) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Task name already exists for this user.'),
+        ),
+      );
+      return;
+    }
 
-
-
-  void modifyTask(String id) async {
     CollectionReference<Task> tasksCollection = getTasksCollection();
-    DocumentReference taskdoc = tasksCollection.doc(id);
-    taskdoc.set({
-      "name": "nager",
-    });
+    await tasksCollection.add(Task(name: trimmedName, creationDate:DateTime.now() , endDate: date, percentage:0));
+
+  }
+
+  Future<bool> checkTaskNameUniqueness(String name) async {
+    String userId = FirebaseAuth.instance.currentUser!.uid;
+    CollectionReference<Task> tasksCollection = getTasksCollection();
+    QuerySnapshot<Task> result = await tasksCollection
+        .where('userId', isEqualTo: userId)
+        .where('name', isEqualTo: name)
+        .get();
+    if(result.docChanges.isNotEmpty)
+      {
+        return true;
+      }
+    return false;
+
+
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -94,11 +132,10 @@ class _TacheState extends State<Tache> {
               onPressed: () => _selectDate(context),
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 if (_nameController.text.isNotEmpty && _selectedDate != null) {
-                  addTask(_nameController.text, _selectedDate!);
+                  await addTask(_nameController.text, _selectedDate!);
                 } else {
-                  // Show an error message if the name or date is not provided
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('Please enter a task name and select a date.'),
