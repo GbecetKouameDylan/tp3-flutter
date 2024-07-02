@@ -18,12 +18,7 @@ var taskDocs;
 
 void addTask(String nom, DateTime date) {
   CollectionReference<Task> tasksCollection = getTasksCollection();
-  Task task = Task(
-    name: nom,
-    creationDate: DateTime.now(),
-    endDate: date,
-    percentage: 23,
-  );
+  Task task = Task(name: nom, creationDate: DateTime.now(), endDate: date, percentage: 23);
 
   tasksCollection.add(task).then((value) {
     print("Task Added");

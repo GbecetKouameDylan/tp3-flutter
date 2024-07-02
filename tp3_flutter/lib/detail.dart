@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tp3_flutter/drawer.dart';
 import 'package:tp3_flutter/task.dart';
+
+import 'lib_http.dart';
 
 class Detail extends StatefulWidget {
 
@@ -12,6 +15,14 @@ class Detail extends StatefulWidget {
   State<Detail> createState() => _DetailState();
 }
 
+void modifyTask(String name, DateTime date, int percentage) async {
+  CollectionReference<Task> tasksCollection = getTasksCollection();
+  DocumentReference<Task> taskdoc = tasksCollection.doc(taskDocs.id);
+
+  Task task = Task(name: name, creationDate: DateTime.now(), endDate: date, percentage: percentage);
+
+  taskdoc.set(task);
+}
 
 class _DetailState extends State<Detail> {
   @override
@@ -35,6 +46,9 @@ class _DetailState extends State<Detail> {
               Text("${widget.task.endDate}"),
 
               Text("${widget.task.percentage}"),
+ElevatedButton(onPressed:()  {modifyTask(widget.task.name,widget.task.endDate,widget.task.percentage);}
+    , child: Text("Change the percentage"))
+
             ],
           ),
         ),

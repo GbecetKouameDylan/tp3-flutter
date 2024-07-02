@@ -49,6 +49,7 @@ class _HomePageState extends State<HomePage> {
       QuerySnapshot<Task> results = await tasksCollection.get();
       setState(() {
         taskItems = results.docs;
+        taskDocs = results.docs;
       });
     } catch (e) {
       setState(() {

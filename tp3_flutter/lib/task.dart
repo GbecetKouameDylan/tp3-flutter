@@ -6,6 +6,7 @@ part 'task.g.dart';
 @JsonSerializable()
 class Task
 {
+
   String name;
   DateTime creationDate;
   DateTime endDate;
