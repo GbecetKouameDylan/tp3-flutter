@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tp3_flutter/creation.dart';
-import 'package:tp3_flutter/tiroir.dart';
+import 'package:tp3_flutter/drawer.dart';
 
 import 'firebase_options.dart';
 
@@ -13,7 +13,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(creation());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -46,22 +46,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    final db = FirebaseFirestore.instance;
-    // Create a new user with a first and last name
-    final user = <String, dynamic>{
-      "first": "Ada",
-      "last": "Lovelace",
-      "born": 1815
-    };
-    db.collection("users").add(user).then((DocumentReference doc) =>
-        print('DocumentSnapshot added with ID: ${doc.id}'));
-    setState(() {
-      _counter++;
-    });
-  }
+
+
 
   Future<UserCredential> signInWithGoogle() async {
     // Trigger the authentication flow
@@ -105,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         title: Text(widget.title),
       ),
-      drawer: Tiroir(),
+      drawer: drawer(),
       body: Center(
 
         child: Column(
@@ -116,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () async {
                signInWithGoogle();
               },
-              child: Text("Connexion avec Google"),
+              child: Text("signin with Google"),
             ),
 
           ],

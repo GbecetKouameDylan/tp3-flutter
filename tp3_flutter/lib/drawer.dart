@@ -3,14 +3,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class Tiroir extends StatefulWidget {
-  const Tiroir({super.key});
+import 'creation.dart';
+import 'home.dart';
+
+class drawer extends StatefulWidget {
+  const drawer({super.key});
 
   @override
-  State<Tiroir> createState() => _TiroirState();
+  State<drawer> createState() => _drawerState();
 }
 
-class _TiroirState extends State<Tiroir> {
+class _drawerState extends State<drawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -31,12 +34,31 @@ class _TiroirState extends State<Tiroir> {
           ),
 
           ListTile(
-            leading: Icon(Icons.settings),
+            leading: Icon(Icons.logout),
             title: Text("signOut"),
             onTap: () async {
               await GoogleSignIn().signOut();
               await FirebaseAuth.instance.signOut();
               setState(() {});
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.add),
+            title: Text("Add a task"),
+            onTap: () async {
+Navigator.push(
+    context,MaterialPageRoute(builder: (context) => Creation()),
+);
+            },
+          ),
+
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text("Home"),
+            onTap: () async {
+              Navigator.push(
+                context,MaterialPageRoute(builder: (context) => Home()),
+              );
             },
           ),
         ],
