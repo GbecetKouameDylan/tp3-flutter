@@ -14,11 +14,12 @@ CollectionReference<Tasks> getTasksCollection() {
     toFirestore: (task, _) => task.toJson(),
   );
 }
-var taskDocs;
+
 
 void addTask(String nom, DateTime date) {
   CollectionReference<Tasks> tasksCollection = getTasksCollection();
-  Tasks task = Tasks(name: nom, creationDate: DateTime.now(), endDate: date, percentage: 23);
+
+  Tasks task = Tasks(name: nom, creationDate: DateTime.now(), endDate: date, percentage: 23 );
 
   tasksCollection.add(task).then((value) {
     print("Task Added");
@@ -26,5 +27,7 @@ void addTask(String nom, DateTime date) {
     print("Failed to add task: $error");
   });
 }
+
+
 
 

@@ -12,7 +12,7 @@ class Tasks
   DateTime endDate;
   int percentage;
 
-  Tasks({required this.name ,required this.creationDate , required this.endDate, required this.percentage});
+  Tasks({required this.name ,required this.creationDate , required this.endDate, required this.percentage });
 
   factory Tasks.fromJson(Map<String, dynamic> json) => _$TasksFromJson(json);
   Map<String, dynamic> toJson() => _$TasksToJson(this);

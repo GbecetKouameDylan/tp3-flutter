@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     getTasks();
   }
-
+var taskDocs;
   void getTasks() async {
     try {
       CollectionReference<Tasks> tasksCollection = getTasksCollection();
@@ -70,7 +70,8 @@ class _HomePageState extends State<HomePage> {
             ? Text('Error loading tasks')
             : taskItems.isEmpty
             ? CircularProgressIndicator()
-            : ListView.builder(
+            :
+    ListView.builder(
           itemCount: taskItems.length,
           itemBuilder: (context, index) {
             Tasks task = taskItems[index].data();
@@ -81,6 +82,7 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(
                     builder: (context) => Detail(
                       task: taskItems[index].data(),
+                      id:taskItems[index].id
                     ),
                   ),
                 );
@@ -91,6 +93,7 @@ class _HomePageState extends State<HomePage> {
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+
 
                       Text(
                           ' ${task.creationDate}'),
@@ -105,18 +108,10 @@ class _HomePageState extends State<HomePage> {
             );
 
           },
-        ),
+        )
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Creation()),
-          );
-        },
-        tooltip: 'Add Task',
-        child: const Icon(Icons.add),
-      ),
+
     );
+
   }
 }
