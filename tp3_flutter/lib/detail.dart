@@ -32,7 +32,7 @@ class _DetailState extends State<Detail> {
 
     await taskDoc.update(updatedData);
   }
-
+  final _pourcentageController = TextEditingController();
 
   void pickImage() async {
     // Check and request permission
@@ -84,9 +84,13 @@ class _DetailState extends State<Detail> {
               Text("${widget.task.creationDate}"),
               Text("${widget.task.endDate}"),
               Text("${widget.task.percentage}"),
+              TextFormField(
+                controller: _pourcentageController,
+                
+              ),
               ElevatedButton(
                 onPressed: () {
-                  modifyTask(2);
+                  modifyTask(int.parse(_pourcentageController.text));
                 },
                 child: Text("Change the percentage"),
               ),
