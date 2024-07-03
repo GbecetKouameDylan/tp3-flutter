@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:tp3_flutter/connexion.dart';
 
 import 'creation.dart';
 import 'home.dart';
@@ -39,6 +40,9 @@ class _drawerState extends State<drawer> {
             onTap: () async {
               await GoogleSignIn().signOut();
               await FirebaseAuth.instance.signOut();
+              Navigator.push(
+                context,MaterialPageRoute(builder: (context) => MyApp()),
+              );
               setState(() {});
             },
           ),

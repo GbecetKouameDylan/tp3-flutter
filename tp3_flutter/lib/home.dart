@@ -34,7 +34,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<QueryDocumentSnapshot<Task>> taskItems = [];
+  List<QueryDocumentSnapshot<Tasks>> taskItems = [];
   bool hasError = false;
 
   @override
@@ -45,8 +45,8 @@ class _HomePageState extends State<HomePage> {
 
   void getTasks() async {
     try {
-      CollectionReference<Task> tasksCollection = getTasksCollection();
-      QuerySnapshot<Task> results = await tasksCollection.get();
+      CollectionReference<Tasks> tasksCollection = getTasksCollection();
+      QuerySnapshot<Tasks> results = await tasksCollection.get();
       setState(() {
         taskItems = results.docs;
         taskDocs = results.docs;
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
             : ListView.builder(
           itemCount: taskItems.length,
           itemBuilder: (context, index) {
-            Task task = taskItems[index].data();
+            Tasks task = taskItems[index].data();
             return GestureDetector(
               onTap: () {
                 Navigator.push(

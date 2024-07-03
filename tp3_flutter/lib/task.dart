@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'task.g.dart';
 
 @JsonSerializable()
-class Task
+class Tasks
 {
 
   String name;
@@ -12,8 +12,8 @@ class Task
   DateTime endDate;
   int percentage;
 
-  Task({required this.name ,required this.creationDate , required this.endDate, required this.percentage});
+  Tasks({required this.name ,required this.creationDate , required this.endDate, required this.percentage});
 
-  factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
-  Map<String, dynamic> toJson() => _$TaskToJson(this);
+  factory Tasks.fromJson(Map<String, dynamic> json) => _$TasksFromJson(json);
+  Map<String, dynamic> toJson() => _$TasksToJson(this);
 }

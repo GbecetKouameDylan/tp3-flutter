@@ -106,10 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () async {
                signInWithGoogle();
-               Navigator.push(
-                 context,
-                 MaterialPageRoute(builder: (context) => Home()),
-               );
+
               },
               child: Text("signin with Google"),
             ),

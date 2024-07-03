@@ -70,15 +70,15 @@ class _TacheState extends State<Tache> {
       return;
     }
 
-    CollectionReference<Task> tasksCollection = getTasksCollection();
-    await tasksCollection.add(Task(name: trimmedName, creationDate:DateTime.now() , endDate: date, percentage:0));
+    CollectionReference<Tasks> tasksCollection = getTasksCollection();
+    await tasksCollection.add(Tasks(name: trimmedName, creationDate:DateTime.now() , endDate: date, percentage:0));
 
   }
 
   Future<bool> checkTaskNameUniqueness(String name) async {
     String userId = FirebaseAuth.instance.currentUser!.uid;
-    CollectionReference<Task> tasksCollection = getTasksCollection();
-    QuerySnapshot<Task> result = await tasksCollection
+    CollectionReference<Tasks> tasksCollection = getTasksCollection();
+    QuerySnapshot<Tasks> result = await tasksCollection
         .where('userId', isEqualTo: userId)
         .where('name', isEqualTo: name)
         .get();
