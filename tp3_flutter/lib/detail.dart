@@ -66,6 +66,12 @@ class _DetailState extends State<Detail> {
 
         await taskDoc.update(updatedData);
 
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Home()
+          ),
+        );
         setState(() {
 
         });
@@ -117,9 +123,9 @@ class _DetailState extends State<Detail> {
                 },
                 child: Text("Pick image"),
               ),
-              (imageUrl != "") ? Image.network(imageUrl,width: 100,) :
-              (widget.task.url!= "") ? Image.network(widget.task.url,width: 100,):
-              (imageUrl != "") ? Image.network(imageUrl,width: 100,) : Text("No image")
+              (imageUrl != "") ? Image.network(imageUrl,width: 30,) :
+              (widget.task.url!= "") ? Image.network(widget.task.url,width: 30,):
+              (imageUrl != "") ? Image.network(imageUrl,width: 30,) : Text("No image")
             ],
           ),
         ),

@@ -102,7 +102,7 @@ var taskDocs;
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      (task.url != "") ? Image.network(task.url,width: 100,) : Text("No image"),
+                      (task.url != "") ? Image.network(task.url,width: 30,) : Text("No image"),
 
                       Text(
                           ' ${task.creationDate}'),
