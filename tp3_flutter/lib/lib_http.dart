@@ -19,7 +19,7 @@ CollectionReference<Tasks> getTasksCollection() {
 void addTask(String nom, DateTime date) {
   CollectionReference<Tasks> tasksCollection = getTasksCollection();
 
-  Tasks task = Tasks(name: nom, creationDate: DateTime.now(), endDate: date, percentage: 23 );
+  Tasks task = Tasks(name: nom, creationDate: DateTime.now(), endDate: date, percentage: 23, url: '' );
 
   tasksCollection.add(task).then((value) {
     print("Task Added");

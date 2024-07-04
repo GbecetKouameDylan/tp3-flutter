@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'package:tp3_flutter/drawer.dart';
+import 'package:tp3_flutter/home.dart';
 import 'package:tp3_flutter/task.dart';
 import 'lib_http.dart';
 
@@ -27,7 +28,7 @@ class _DetailState extends State<Detail> {
     DocumentReference<Tasks> taskDoc = tasksCollection.doc(widget.id);
 
     Map<String, dynamic> updatedData = {
-      "percentage": percentage
+      "percentage": percentage,
     };
 
     await taskDoc.update(updatedData);
@@ -56,8 +57,17 @@ class _DetailState extends State<Detail> {
           "url": imageUrl
         });
 
+        CollectionReference<Tasks> tasksCollection = getTasksCollection();
+        DocumentReference<Tasks> taskDoc = tasksCollection.doc(widget.id);
+
+        Map<String, dynamic> updatedData = {
+          "url": imageUrl
+        };
+
+        await taskDoc.update(updatedData);
+
         setState(() {
-          // Update the UI with the new image URL
+
         });
       } else {
         print("No file selected");
@@ -91,15 +101,24 @@ class _DetailState extends State<Detail> {
               ElevatedButton(
                 onPressed: () {
                   modifyTask(int.parse(_pourcentageController.text));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Home()
+                    ),
+                  );
                 },
                 child: Text("Change the percentage"),
               ),
               ElevatedButton(
                 onPressed: () {
                   pickImage();
+
                 },
                 child: Text("Pick image"),
               ),
+              (imageUrl != "") ? Image.network(imageUrl,width: 100,) :
+              (widget.task.url!= "") ? Image.network(widget.task.url,width: 100,):
               (imageUrl != "") ? Image.network(imageUrl,width: 100,) : Text("No image")
             ],
           ),

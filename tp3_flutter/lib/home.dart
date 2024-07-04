@@ -69,7 +69,16 @@ var taskDocs;
         child: hasError
             ? Text('Error loading tasks')
             : taskItems.isEmpty
-            ? CircularProgressIndicator()
+            ? ElevatedButton(onPressed:()
+            {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                  builder: (context) => Creation()
+              ),
+              );
+            },
+            child: Text("No task found add one"))
             :
     ListView.builder(
           itemCount: taskItems.length,
@@ -93,7 +102,7 @@ var taskDocs;
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
+                      (task.url != "") ? Image.network(task.url,width: 100,) : Text("No image"),
 
                       Text(
                           ' ${task.creationDate}'),

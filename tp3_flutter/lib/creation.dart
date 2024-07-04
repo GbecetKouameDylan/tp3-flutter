@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tp3_flutter/home.dart';
 import 'package:tp3_flutter/task.dart';
 
 import 'drawer.dart';
@@ -71,18 +72,16 @@ class _TacheState extends State<Tache> {
     }
 
     CollectionReference<Tasks> tasksCollection = getTasksCollection();
-    await tasksCollection.add(Tasks(name: trimmedName, creationDate:DateTime.now() , endDate: date, percentage:0));
+    await tasksCollection.add(Tasks(name: trimmedName, creationDate:DateTime.now() , endDate: date, percentage:0, url: ''));
 
   }
 
   Future<bool> checkTaskNameUniqueness(String name) async {
-    String userId = FirebaseAuth.instance.currentUser!.uid;
     CollectionReference<Tasks> tasksCollection = getTasksCollection();
     QuerySnapshot<Tasks> result = await tasksCollection
-        .where('userId', isEqualTo: userId)
         .where('name', isEqualTo: name)
         .get();
-    if(result.docChanges.isNotEmpty)
+    if(result.docs.isNotEmpty)
       {
         return true;
       }
@@ -135,6 +134,12 @@ class _TacheState extends State<Tache> {
               onPressed: () async {
                 if (_nameController.text.isNotEmpty && _selectedDate != null) {
                   await addTask(_nameController.text, _selectedDate!);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Home()
+                    ),
+                  );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(

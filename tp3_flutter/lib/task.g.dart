@@ -11,9 +11,11 @@ Tasks _$TasksFromJson(Map<String, dynamic> json) => Tasks(
       creationDate: DateTime.parse(json['creationDate'] as String),
       endDate: DateTime.parse(json['endDate'] as String),
       percentage: (json['percentage'] as num).toInt(),
+      url: json['url'] as String,
     );
 
 Map<String, dynamic> _$TasksToJson(Tasks instance) => <String, dynamic>{
+      'url': instance.url,
       'name': instance.name,
       'creationDate': instance.creationDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
